@@ -1,0 +1,4 @@
+---
+- name: 执行zabbix安装操作
+  import_tasks: "{{action_type}}.yml"
+  when: action_type is defined

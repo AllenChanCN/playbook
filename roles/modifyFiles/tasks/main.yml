@@ -1,0 +1,14 @@
+---
+- name: 加载被修改文件名参数
+  include_vars:
+    file: vars/{{modify_type}}.yml
+  when: modify_type is defined
+- name: 修改文件
+  lineinfile:
+    path: "{{item.fname}}"
+    regexp: "{{item.regexp}}"
+    line: "{{item.line}}"
+    state: "{{item.get(\"state\", \"present\")}}"
+  with_items:
+    "{{modify_items}}"
+  when: modify_items is defined

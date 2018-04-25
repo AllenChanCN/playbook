@@ -1,0 +1,11 @@
+---
+- name: 加载被安装组件的组件名
+  include_vars:
+    file: vars/{{ install_type }}.yml
+  when: install_type is defined
+- name: 安装组件
+  yum: 
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    "{{install_packages}}"

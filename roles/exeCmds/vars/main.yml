@@ -1,0 +1,3 @@
+---
+exeList:
+  - echo hi > /dev/null

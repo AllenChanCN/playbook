@@ -1,0 +1,47 @@
+---
+fileList:
+  - name: "zabbix agent启动文件"
+    src: zabbix_agentd
+    dest: /etc/rc.d/init.d/zabbix_agentd
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0755"
+    d_owner: root
+    d_group: root
+  - name: "iksemel 安装文件"
+    src: iksemel-master.zip
+    dest: /tmp/iksemel-master.zip
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root
+  - name: "pcre 安装文件"
+    src: pcre-8.39.tar.gz
+    dest: /tmp/pcre-8.39.tar.gz
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root
+  - name: "zabbix 安装文件"
+    src: zabbix-3.4.7.tar.gz
+    dest: /tmp/zabbix-3.4.7.tar.gz
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root
+  - name: "zabbix 安装shell"
+    src: zabbix_install.sh
+    dest: /tmp/zabbix_install.sh
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root

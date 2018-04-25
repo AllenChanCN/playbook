@@ -1,0 +1,5 @@
+---
+insert_items: 
+  - job: "/usr/sbin/ntpdate -u 0.centos.pool.ntp.org &> /dev/null"
+    minute: "*/10"
+    name: "定时同步时间服务器"

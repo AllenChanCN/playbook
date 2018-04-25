@@ -1,0 +1,5 @@
+---
+- import_tasks: close.yml
+  when: selinux_state is defined and selinux_state == "close"
+- import_tasks: open.yml
+  when: selinux_state is defined and selinux_state == "open"

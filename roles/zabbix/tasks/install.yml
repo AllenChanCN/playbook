@@ -1,0 +1,37 @@
+---
+- name: "执行安装脚本"
+  shell: bash /tmp/zabbix_install.sh &> /tmp/zabbix_install.log
+  register: exe_ret
+  ignore_errors: True
+- name: "查看安装结果"
+  debug: msg="{{exe_ret}}"
+- name: "获取公网IP"
+  uri:
+    url: http://query-ip.com
+    method: GET
+    return_content: yes
+    headers:
+       User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.27.1 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+  register: login
+- name: "修改zabbix配置文件-Hostname"
+  lineinfile:
+    path: "{{item.fname}}"
+    regexp: "{{item.regexp}}"
+    line: "{{item.line}}"
+    state: "{{item.get(\"state\", \"present\")}}"
+  with_items:
+    - fname: /usr/local/zabbix/etc/zabbix_agentd.conf
+      regexp: "^ServerActive=.*$"
+      line: "ServerActive=103.212.33.132"
+    - fname: /usr/local/zabbix/etc/zabbix_agentd.conf
+      regexp: "^Server=.*$"
+      line: "Server=103.212.33.132"
+    - fname: /usr/local/zabbix/etc/zabbix_agentd.conf
+      regexp: "^Hostname=.*$"
+      line: "Hostname={{login.content.strip()}}"
+- name: "添加zabbix_agentd到service"
+  shell: /sbin/chkconfig --add zabbix_agentd
+- name: "更改zabbix_agentd启动参数"
+  shell: /sbin/chkconfig --level 2345 zabbix_agentd on
+- name: "启动zabbix_agentd"
+  shell: /etc/init.d/zabbix_agentd start

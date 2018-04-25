@@ -1,0 +1,9 @@
+---
+- name: "加载被执行命令的参数信息"
+  include_vars:
+    file: "{{exe_type}}.yml"
+  when: exe_type is defined
+- name: "执行命令"
+  command: '{{ item }}'
+  with_items:
+    '{{ exeList }}'

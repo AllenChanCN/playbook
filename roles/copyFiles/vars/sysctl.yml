@@ -1,0 +1,11 @@
+---
+fileList:
+  - name: "内核文件"
+    src: sysctl_{{ansible_distribution_version.replace(".", "_")}}.conf
+    dest: /etc/sysctl.conf
+    mode: "0644"
+    owner: root
+    group: root
+    d_mode: "0755"
+    d_owner: root
+    d_group: root

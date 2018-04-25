@@ -1,0 +1,21 @@
+---
+- name: 加载被添加用户的参数信息
+  include_vars:
+    file: "{{ userParas }}.yml"
+  when: userParas is defined
+- name: 创建用户组
+  group:
+    name: '{{ item.get("groupName", "nobody") }}'
+    state: present
+  with_items:
+    "{{userList}}"
+- name: 创建用户
+  user:
+    append: yes
+    name: '{{ item.get("userName", "nobody") }}'
+    group: '{{ item.get("groupName", "nobody") }}'
+    password: '{{ item.get("passwd", "") }}'
+    shell: '{{ item.get("shell", "/sbin/nologin") }}'
+    createhome: '{{ item.get("createhome", "no") }}'
+  with_items:
+    "{{userList}}"

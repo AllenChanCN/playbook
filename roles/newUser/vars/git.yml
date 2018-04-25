@@ -1,0 +1,5 @@
+---
+userList:
+  - userName: "git"
+    groupName: "git"
+    shell: "/usr/bin/git-shell"

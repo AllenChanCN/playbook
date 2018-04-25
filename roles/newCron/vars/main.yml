@@ -1,0 +1,3 @@
+---
+insert_items: 
+  - job: "echo hi &> /dev/null"

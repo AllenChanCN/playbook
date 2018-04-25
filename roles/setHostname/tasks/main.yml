@@ -1,0 +1,16 @@
+---
+- name: 修改主机名文件 /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: '127.0.0.1 {{hname}}'
+    insertbefore: '^127'
+    state: present
+- name: 修改主机名文件 /etc/sysconfig/network
+  lineinfile:
+    dest: /etc/sysconfig/network
+    regexp: ^HOSTNAME=
+    line: 'HOSTNAME={{hname}}'
+    state: present
+- name: 修改主机名
+  hostname:
+    name: "{{hname}}"

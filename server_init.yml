@@ -1,0 +1,38 @@
+---
+- hosts: all
+  become: yes
+  become_method: su
+  roles:
+    - role: yumBasiscomponent
+      install_type: "basic_install"
+    - role: selinux
+      selinux_state: "close"
+    - role: setHostname
+      hname: "node_{{ \"_\".join(ansible_env.SSH_CONNECTION.split()[-2].split(\".\")[-2:]) }}"
+    - role: newCron
+      cronName: "ntpdate"
+    - role: copyFiles
+      copy_type: "sysctl"
+    - role: exeCmds
+      exe_type: "sysctl"
+    - role: modifyFiles
+      modify_type: "open_files"
+    - role: newUser
+      userParas: "basic_install"
+    - role: copyFiles
+      copy_type: "avgKey"
+    - role: modifyFiles
+      modify_type: "denyRootLogin"
+    - role: modifyFiles
+      modify_type: "denyPasswordLogin"
+    - role: modifyFiles
+      modify_type: "modifyLoginPort"
+    - role: services
+      service_name: "sshd"
+      service_state: "restarted"
+    - role: firewalld
+      initialize_type: "basic_install"
+    - role: copyFiles
+      copy_type: "zabbix_agentd"
+    - role: zabbix
+      action_type: "install"

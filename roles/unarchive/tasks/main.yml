@@ -1,0 +1,23 @@
+---
+- name: "加载被解压包的参数信息"
+  include_vars:
+    file: "{{unarchive_type}}.yml"
+- name: "确认被解压路径的存在"
+  file: 
+    path: '{{ item.get("dest", "/tmp") }}'
+    state: directory
+    owner: '{{ item.get("d_owner", "") }}'
+    group: '{{ item.get("d_group", "") }}'
+    mode: '{{ item.get("d_mode", "") }}'
+  with_items:
+    '{{ unarchive_paras }}'
+- name: "解压安装包到目标节点"
+  unarchive:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    mode: "{{item.mode}}"
+    owner: "{{item.owner}}"
+    group: "{{item.group}}"
+    keep_newer: yes
+  with_items:
+    "{{ unarchive_paras }}"

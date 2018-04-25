@@ -1,0 +1,6 @@
+---
+modify_items:
+  - fname: "/etc/ssh/sshd_config"
+    regexp: "^#?Port +.*"
+    line: "Port 2022"
+    state: present

@@ -1,0 +1,3 @@
+---
+exeList:
+  - '/sbin/sysctl -p'

@@ -1,0 +1,8 @@
+---
+fileList:
+  - name: "zabbix server启动文件"
+    src: zabbix_server
+    dest: /etc/init.d/zabbix_server
+    mode: "0755"
+    owner: root
+    group: root

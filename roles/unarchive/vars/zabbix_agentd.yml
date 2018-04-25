@@ -1,0 +1,29 @@
+---
+unarchive_paras:
+  - name: "iksemel 安装文件"
+    src: iksemel-master.zip
+    dest: /tmp
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root
+  - name: "pcre 安装文件"
+    src: pcre-8.39.tar.gz
+    dest: /tmp
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root
+  - name: "zabbix 安装文件"
+    src: zabbix-3.4.7.tar.gz
+    dest: /tmp
+    mode: "0755"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root

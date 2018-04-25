@@ -1,0 +1,13 @@
+---
+allow_nodes: 
+  - "192.168.0.0/16"
+  - "127.0.0.1"
+  - "103.212.33.132"
+  - "221.120.162.108/24"
+drop_protocol:
+  - "icmp"
+chian_rules:
+  - chain: "INPUT"
+    policy: "DROP"
+  - chain: "FORWARD"
+    policy: "DROP"

@@ -1,0 +1,12 @@
+---
+install_packages:
+  - "@Development tools"
+  - wget
+  - lsof
+  - telnet
+  - vim
+  - net-tools
+  - rsyslog
+  - ntpdate
+  - bind-utils
+  - libselinux-python

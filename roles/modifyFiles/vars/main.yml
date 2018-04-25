@@ -1,0 +1,4 @@
+---
+modify_items:
+  - name: "空白文件（被加载说明参数有误）"
+  - debug: msg="{{ ansible_os_family }}"

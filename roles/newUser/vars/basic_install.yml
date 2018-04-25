@@ -1,0 +1,7 @@
+---
+userList:
+  - userName: "avgUser"
+    groupName: "avgUser"
+    passwd: 'W"l0X$C,o_Mn{6aw'
+    shell: '/bin/bash'
+    createhome: 'yes'

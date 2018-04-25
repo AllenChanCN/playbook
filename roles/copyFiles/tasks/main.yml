@@ -1,0 +1,23 @@
+---
+- name: "加载被复制文件的参数信息"
+  include_vars:
+    file: "{{copy_type}}.yml"
+  when: copy_type is defined
+- name: "确认被复制路径的存在"
+  file: 
+    path: '{{ "/".join(item.get("dest", "/tmp/a").split("/")[:-1]) }}'
+    state: directory
+    owner: '{{ item.get("d_owner", "") }}'
+    group: '{{ item.get("d_group", "") }}'
+    mode: '{{ item.get("d_mode", "") }}'
+  with_items:
+    '{{ fileList }}'
+- name: "复制文件到节点"
+  copy:
+    src: '{{ item.get("src", "") }}'
+    dest: '{{ item.get("dest", "") }}'
+    mode: '{{ item.get("mode", "") }}'
+    owner: '{{ item.get("owner", "") }}'
+    group: '{{ item.get("group", "") }}'
+  with_items:
+    '{{ fileList }}'

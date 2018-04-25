@@ -1,0 +1,11 @@
+---
+fileList:
+  - name: "复制avgUser的公钥文件"
+    src: avgKey
+    dest: /home/avgUser/.ssh/authorized_keys
+    mode: "0700"
+    owner: avgUser
+    group: avgUser
+    d_mode: "0700"
+    d_owner: avgUser
+    d_group: avgUser

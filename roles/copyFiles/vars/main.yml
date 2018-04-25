@@ -1,0 +1,11 @@
+---
+fileList:
+  - name: "空白文件(被加载说明缺少参数)"
+    src: /etc/virc
+    dest: /tmp/virc
+    mode: "0644"
+    owner: root
+    group: root
+    d_mode: "0777"
+    d_owner: root
+    d_group: root

@@ -1,0 +1,24 @@
+---
+- name: 加载定时任务参数文件
+  include_vars:
+    file: "{{cronName}}.yml"
+  when: cronName is defined
+- name: 确认cron文件存在
+  file:
+    path: /var/spool/cron/root
+    state: touch
+    mode: 0600
+    owner: root
+    group: root
+- name: 添加定时任务
+  cron:
+    name: "{{item.get(\"name\", \"None\")}}"
+    minute: "{{item.get(\"minute\", \"*\")}}"
+    hour: "{{item.get(\"hour\", \"*\")}}"
+    day: "{{item.get(\"day\", \"*\")}}"
+    month: "{{item.get(\"month\", \"*\")}}"
+    weekday: "{{item.get(\"weekday\", \"*\")}}"
+    state: "{{item.get(\"state\", \"present\")}}"
+    job: "{{item.get(\"job\", \"echo hello &> /dev/null\")}}"
+  with_items:
+    "{{insert_items}}"

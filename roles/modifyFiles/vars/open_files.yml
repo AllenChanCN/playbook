@@ -1,0 +1,10 @@
+---
+modify_items:
+  - fname: "/etc/security/limits.conf"
+    regexp: ^\*\s*soft\s*nofile\s*.*
+    line: "*               soft    nofile  65535"
+    state: present
+  - fname: "/etc/security/limits.conf"
+    regexp: ^\*\s*hard\s*nofile\s*.*
+    line: "*               hard    nofile  65535"
+    state: present
